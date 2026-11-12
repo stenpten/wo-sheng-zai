@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>我生在 · 从秦到现在</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&f[]=general-sans@400,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=11">
+</head>
+<body id="top">
+  <a class="skip" href="#life">跳到这一生</a>
+  <div class="accent-bar"></div>
+  <header class="hero">
+    <div class="hero-media">
+      <img class="is-on" src="assets/summer-mountains.jpg" alt="北宋屈鼎《夏山图》，绢本山水长卷，不是某一座城的照片">
+      <img src="assets/bronze-gui.jpg" alt="洛阳出土的春秋青铜簋，兽首耳">
+      <img src="assets/2024apr-nanjing-city-wall-south-section-img.jpg" alt="今天的南京城墙南段，明初所筑">
+      <img class="slips" src="assets/bamboo-slips.jpg" alt="湖南博物院所藏西汉竹简，装在玻璃管里">
+    </div>
+    <div class="scrim"></div>
+    <div class="topbar">
+      <a class="wordmark" href="#top">我生在</a>
+      <div class="nav-actions">
+        <a href="#places">地名</a>
+        <button class="redraw" type="button" id="redrawTop">换一个</button>
+        <button class="action" type="button" data-advance>开始</button>
+      </div>
+    </div>
+    <div class="hero-copy rise">
+      <h1 id="hero-title">我生在<br>哪一年</h1>
+      <p class="stand" id="hero-stand">秦到今，抽一次。按出生规模抽，不是按今天还活着的人抽。</p>
+      <p class="era-rank" id="eraRank"></p>
+      <dl id="cert" class="cert" hidden></dl>
+      <div id="birthContext" class="birth-context" hidden>
+        <div id="birthStats" class="birth-stats"></div>
+        <p id="birthCompare" class="birth-compare"></p>
+        <div id="birthPeers" class="birth-peers"></div>
+      </div>
+      <div class="home-actions">
+        <button class="action start-main" type="button" data-advance>开始</button>
+        <button class="redraw" type="button" id="redraw">换一个</button>
+        <button class="redraw share-birth" type="button" id="shareBirth" hidden>分享出生卡</button>
+      </div>
+      <p class="who" id="who">三国单独成桶，不并进魏晋。</p>
+    <p class="pin"><i></i><span id="pin-fact">成色分估、档、册</span></p>
+    </div>
+    <div class="cards rise">
+      <a class="card" href="#life">
+        <img src="assets/bamboo-slips.jpg" alt="西汉竹简，名籍留下的样子，不是你的档案">
+        <span class="card-bar"><span>汉简</span><span>去</span></span>
+      </a>
+      <a class="card" href="#places">
+        <img id="card-place-img" src="assets/summer-mountains.jpg" alt="北宋山水，不是这座城的照片">
+        <span class="card-bar"><span id="card-place-title">故地</span><span>去</span></span>
+      </a>
+    </div>
+  </header>
+
+  <section class="life" id="life" aria-labelledby="life-title">
+    <div class="life-board">
+    <div class="life-head rise">
+      <div class="life-progress" aria-label="这一生的进度">
+        <div class="life-progress-head"><span>这一生的进度</span><strong id="lifeProgressText">出生</strong></div>
+        <div class="life-progress-track"><i id="lifeProgressFill"></i></div>
+      </div>
+      <h2 id="life-title">这一年的重心 <span class="soft">随时可以改</span></h2>
+      <p class="life-now" id="life-now" aria-live="polite"></p>
+      <p class="era-note" id="eraNote"></p>
+      <p id="statusLine" class="status-line"></p>
+      <div id="meters" class="meters"></div>
+      <div class="money-tools" id="planningTools">
+        <div class="money-copy">
+          <p id="moneyLine" class="money-line"></p>
+          <p id="planState" class="plan-state">还没有给未来留下一步安排。</p>
+        </div>
+        <button class="ghost plan-button" type="button" id="planBtn">给未来留一步</button>
+      </div>
+      <div id="lifeStory" class="life-story" aria-live="polite">
+        <p class="story-context">正在走的路</p>
+        <p id="arcLine" class="arc-line"></p>
+        <p id="impactLine" class="impact-line" hidden></p>
+        <p id="routeLine" class="route-line"></p>
+      </div>
+      <p id="nextStop" class="next-stop"></p>
+      <p id="focusNote" class="fine">选一个重心。出身不会因此改变。</p>
+      <div id="focusRow" class="focus-row"></div>
+      <button class="action" type="button" data-advance>开始</button>
+    </div>
+    <aside class="life-side" id="lifeSide" aria-label="家人和同时出生的人">
+      <div id="familyBox" class="side-card"></div>
+      <div id="peers" class="peers side-card"></div>
+    </aside>
+    </div>
+    
+    <div id="endcard" class="endcard" hidden>
+      <p class="soft">这一生写完了</p>
+      <h2 id="endTitle"></h2>
+      <p id="endBody"></p>
+      <div id="endStats" class="end-stats"></div>
+      <p id="endLook" class="end-detail"></p>
+      <div id="lifeMap" class="life-map" aria-label="一年一格"></div>
+      <div id="endPeers" class="end-peers"></div>
+      <div class="end-columns">
+        <p id="endHistory" class="end-detail"></p>
+        <p id="endRoute" class="end-detail"></p>
+      </div>
+      <section id="endChoices" class="end-section" hidden aria-labelledby="endChoicesTitle">
+        <h3 id="endChoicesTitle">改变路线的选择</h3>
+        <ol id="keyChoices" class="end-list"></ol>
+        <h3 class="end-subtitle">留下的回声</h3>
+        <div id="endEchoes" class="end-echoes"></div>
+      </section>
+      <dl id="endFacts" class="end-facts"></dl>
+      <p id="endPlaces" class="end-detail"></p>
+      <p id="endShareLine" class="end-share-line"></p>
+      <p id="endFine" class="fine"></p>
+      <button id="shareLife" class="action" type="button" hidden>分享这一生</button>
+    </div>
+    <div class="runbar" id="runbar" aria-label="人生播放控制">
+      <span class="runbar-label">播放</span>
+      <button type="button" id="autoBtn" data-run-control>自动抉择</button>
+      <button type="button" id="pauseBtn" data-run-control>暂停</button>
+      <button type="button" id="againLife">换一生</button>
+      <button type="button" data-speed="1" data-run-control>1×</button>
+      <button type="button" data-speed="2" data-run-control>2×</button>
+      <button type="button" data-speed="4" data-run-control>4×</button>
+      <button type="button" data-speed="8" data-run-control>8×</button>
+      <button type="button" data-speed="12" data-run-control>12×</button>
+      <button type="button" data-speed="16" data-run-control>16×</button>
+      <span id="runbarNote" class="runbar-note" hidden>这一生已经写完。你可以查看总结，或换一生。</span>
+    </div>
+    <div id="decision" class="decision" hidden>
+      <p id="decKicker"></p>
+      <h3 id="decTitle"></h3>
+      <p id="decBody"></p>
+      <p id="decCite" class="cite" hidden></p>
+      <a id="decSource" class="source-link" hidden target="_blank" rel="noreferrer"></a>
+      <div id="reflectBox" class="reflect-box" hidden>
+        <label for="reflectLine">留下一句，也可以空着</label>
+        <input id="reflectLine" maxlength="40" placeholder="写给这一岁">
+      </div>
+      <p class="decision-hint">每个选择都会留下代价；两年后，你会看到它有没有兑现。</p>
+      <div id="decOptions"></div>
+    </div>
+    <div id="planning" class="planning-panel" hidden role="dialog" aria-modal="true" aria-labelledby="planTitle">
+      <div class="planning-dialog">
+        <div class="planning-head">
+        <div>
+          <p class="soft">时间已暂停 · 把现在留给以后</p>
+           <h3 id="planTitle">给未来留一步</h3>
+        </div>
+        <button class="ghost" type="button" id="planClose">收起</button>
+        </div>
+      <p id="planLead" class="plan-lead"></p>
+      <div id="planOptions" class="plan-options"></div>
+      </div>
+    </div>
+
+    <div class="agenda">
+      <div class="tabs" id="tabs" role="group" aria-label="今年的重心"></div>
+      <div class="bands" id="bands"></div>
+    </div>
+  </section>
+
+  <section class="mosaic rise" aria-labelledby="world-title">
+    <h2 id="world-title">这些不是你</h2>
+    <div class="tiles">
+      <figure class="tile rise">
+        <img src="assets/female-dancer.jpg" alt="西汉陶舞俑，公元前二世纪，陶土上还留着白粉和朱红">
+        <span>西汉陶舞俑，公元前二世纪</span>
+      </figure>
+      <figure class="tile rise">
+        <img src="assets/bronze-gui.jpg" alt="洛阳出土的春秋青铜簋，口沿下有兽首衔环">
+        <span>洛阳的青铜簋</span>
+      </figure>
+      <figure class="tile rise">
+        <img src="assets/bamboo-slips.jpg" alt="湖南博物院展出的西汉竹简">
+        <span>西汉的简</span>
+      </figure>
+      <figure class="tile rise">
+        <img src="assets/2024apr-nanjing-city-wall-south-section-img.jpg" alt="南京城墙顶上的砖路和远处的高楼">
+        <span>今天的南京城墙</span>
+      </figure>
+    </div>
+  </section>
+
+  <section class="about" id="places" aria-labelledby="place-title">
+    <div class="about-grid">
+      <h2 id="place-title">地名对照</h2>
+      <dl class="facts">
+        <div><dt>范围</dt><dd>前221年到2026年</dd></div>
+        <div><dt>三国</dt><dd>220到279，单独成桶</dd></div>
+        <div><dt>抽到三国</dt><dd id="sg-share">按出生权重，另有保底</dd></div>
+      </dl>
+    </div>
+    <p class="about-copy rise" id="sources">「我生在」抽的是一次出生，不是现在还活着的人。年份以各代估计的出生规模为主。1949年之后压低一些，秦和三国有保底，不至于几乎抽不到。三国不并进魏晋：魏、蜀、吴由你落在的地方决定。每一处都写当时的名字，再写今天的哪里一带。吴的武昌在今天的湖北鄂州一带，不是武汉的武昌。古代死亡是对上预期寿命的模型，盖「估」。1953年之后只对照普查的量级，盖「册」，仍然不是公报里的某一个真人。</p>
+    <div class="records">
+      <h3>三国的地方</h3>
+      <div class="cols">
+        <div>
+          <p>建业<span>今江苏南京一带 · 吴</span></p>
+          <p>武昌<span>今湖北鄂州一带 · 吴</span></p>
+          <p>江陵<span>今湖北荆州一带 · 吴</span></p>
+          <p>番禺<span>今广东广州一带 · 吴</span></p>
+          <p>成都<span>今四川成都一带 · 蜀</span></p>
+          <p>汉中<span>今陕西汉中一带 · 蜀</span></p>
+        </div>
+        <div>
+          <p>洛阳<span>今河南洛阳一带 · 魏</span></p>
+          <p>邺<span>今河北临漳一带 · 魏</span></p>
+          <p>许昌<span>今河南许昌一带 · 魏</span></p>
+          <p>长安<span>今陕西西安一带 · 魏</span></p>
+          <p>襄阳<span>今湖北襄阳一带 · 魏</span></p>
+          <p>寿春<span>今安徽寿县一带 · 魏</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="records">
+      <h3>前后也会碰到</h3>
+      <div class="cols">
+        <div>
+          <p>咸阳<span>今陕西咸阳一带</span></p>
+          <p>长安<span>今陕西西安一带</span></p>
+          <p>建康<span>今江苏南京一带</span></p>
+          <p>平城<span>今山西大同一带</span></p>
+          <p>东京<span>今河南开封一带</span></p>
+          <p>临安<span>今浙江杭州一带</span></p>
+        </div>
+        <div>
+          <p>大都<span>今北京一带</span></p>
+          <p>幽州<span>今北京一带</span></p>
+          <p>江宁<span>今江苏南京一带</span></p>
+          <p>北平<span>今北京一带</span></p>
+          <p>迪化<span>今新疆乌鲁木齐一带</span></p>
+          <p>归绥<span>今内蒙古呼和浩特一带</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-labelledby="num-title">
+    <h2 id="num-title">这一生的数</h2>
+    <p class="stats-copy rise" id="stats-copy"><span>从前221年活到2026年</span><span>预期写在模型里</span></p>
+  </section>
+
+  <footer class="site-footer">
+    <p class="giant rise">我生在</p>
+    <div class="foot-row">
+      <div id="foot-places">
+        <a href="#places">建业</a>
+        <a href="#places">洛阳</a>
+        <a href="#places">长安</a>
+      </div>
+      <nav class="foot-links" aria-label="页内">
+        <a href="#life">这一生</a>
+        <a href="#places">地名</a>
+        <a href="#sources">出处</a>
+        <a href="#top" id="again">换一生</a>
+        <a href="#world-title">这些不是你</a>
+        <a href="#num-title">这一生的数</a>
+      </nav>
+    </div>
+    <div class="legal">
+      <p>死亡按各代预期寿命校准，六岁前你不会被模型写死。进项按出身拉开，选择只能挪一点。战乱、饥荒和产褥会抬高风险。数字分估、档、册，不是户籍原件。古代概率是模型，不是普查。图是公有收藏里的山水、器物和今天的城墙，不是这一个人的照片。《夏山图》，屈鼎，约1050年，公有领域，大都会艺术博物馆。青铜簋与竹简照片为公有领域，经由维基共享。南京城墙，Chainwit.，CC BY 4.0，维基共享。西汉陶舞俑，公元前二世纪，公有领域，大都会艺术博物馆。</p>
+      <a href="#top">回到这一生</a>
+    </div>
+  </footer>
+  <script src="js/model.js?v=5"></script>
+  <script src="js/turns.js?v=11"></script>
+  <script src="js/decide.js?v=11"></script>
+  <script src="js/birth.js?v=4"></script>
+  <script src="js/strategy.js?v=2"></script>
+  <script src="js/life.js?v=12"></script>
+</body>
+</html>
+
+
+
+
+
